@@ -13,10 +13,13 @@ import java.util.Date;
 
 
 public class Main {
+	System.out.println("testing");
+}
+	/**
 	private static final DecimalFormat two = new DecimalFormat("00");
 	private static final DecimalFormat three = new DecimalFormat("000");
 	private static long lastModified = 0;
-	
+
 	private static final String THE_URL = "http://egauge21244.egaug.es/cgi-bin/egauge?v1";
 	private static final int INTERVAL = 10;
 
@@ -35,14 +38,14 @@ public class Main {
 		String fileName = cal.get(Calendar.YEAR) +
 		"." + three.format(cal.get(Calendar.DAY_OF_YEAR)) +
 		"." + two.format(cal.get(Calendar.HOUR_OF_DAY))+
-		"." + two.format(cal.get(Calendar.MINUTE)) + 
+		"." + two.format(cal.get(Calendar.MINUTE)) +
 		"." + two.format(cal.get(Calendar.SECOND));
 		return fileName;
 	}
-	
+
 	/**
 	 * Uses POST if data isn't empty or null.
-	 */
+	 *//**
 
 	public static void grabFile(URL source) throws IOException {
 		try {
@@ -62,7 +65,7 @@ public class Main {
 				outFile.close();
 				System.out.println("Wrote "+fileName);
 			}
-			inStream.close();	
+			inStream.close();
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
