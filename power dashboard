@@ -46,9 +46,21 @@ ul.tab li a:focus, .active {
 }
 
 </style>
+
 <body>
 
-<p>Power Management Dashboard</p>
+<script src="loadXML.js"></script>
+
+<h3>Power Management Dashboard</h3>
+
+eGauge URL: <input type="url" id="eGauge" value="input your device"> <button onclick="getData()">Get Data</button>
+
+<script>
+function getData(){
+	var url = document.getElementById("eGauge").value;
+    loadDoc(url);
+}
+</script>
 
 <ul class="tab">
   <li><a href="javascript:void(0)" class="tablinks" onclick="openTab(event, 'Electrical')">Electrical</a></li>
