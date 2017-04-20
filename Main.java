@@ -13,9 +13,6 @@ import java.util.Date;
 
 
 public class Main {
-	System.out.println("testing");
-}
-	/**
 	private static final DecimalFormat two = new DecimalFormat("00");
 	private static final DecimalFormat three = new DecimalFormat("000");
 	private static long lastModified = 0;
@@ -45,7 +42,7 @@ public class Main {
 
 	/**
 	 * Uses POST if data isn't empty or null.
-	 *//**
+	 */
 
 	public static void grabFile(URL source) throws IOException {
 		try {
