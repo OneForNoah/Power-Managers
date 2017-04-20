@@ -48,28 +48,41 @@ ul.tab li a:focus, .active {
 
 <h2>Power Management Dashboard</h2>
 
+<p>Upload a new .csv file<p>
+  <form method="post" enctype="multipart/form-data">
+    <input type="file" id="myFile">
+    <input type="submit" value="Upload" />
+  </form>
+<!--<script>
+  var x = document.getElementById("myFile");
+</script>-->
+
 <ul class="tab">
-  <li><a href="javascript:void(0)" class="tablinks" onclick="openTab(event, 'Graphs')">Graphs</a></li>
-  <li><a href="javascript:void(0)" class="tablinks" onclick="openTab(event, 'Settings')">Settings</a></li>
+  <li><a href="javascript:void(0)" class="tablinks" onclick="openTab(event, 'Electrical')">Electrical</a></li>
+  <li><a href="javascript:void(0)" class="tablinks" onclick="openTab(event, 'Water')">Water</a></li>
   <li><a href="javascript:void(0)" class="tablinks" onclick="openTab(event, 'Solar')">Solar</a></li>
 </ul>
 
-<div id="Graphs" class="tabcontent">
-  <h3>Graphs</h3>
-  <p>Data on your utilities</p>
-  
+<div id="Electrical" class="tabcontent">
+  <h3>Electrical</h3>
+  <p>Data on Brad's power usage.</p>
 </div>
 
-<div id="Settings" class="tabcontent">
-  <h3>Settings</h3>
-  <p>Upload a new .csv file here</p>
-    <form method="post" enctype="multipart/form-data">
-      <input type="file" id="myFile">
-      <input type="submit" value="Upload" />
-    </form>
-  <!--<script>
-    var x = document.getElementById("myFile");
-  </script>-->
+<div id="Water" class="tabcontent">
+  <h3>Water</h3>
+  <p>Data on Brad's water consumption.</p>
+  <object
+  classid="clsid:CAFEEFAC-0015-0000-0000-ABCDEFFEDCBA"
+  <param name="code" value="Main.java">
+    <comment>
+      <embed code="Main.java"
+        type="application/x-java-applet;jpi-version=1.5.0">
+        <noembed>
+          No Java Support.
+        </noembed>
+      </embed>
+    </comment>
+  </object>
 </div>
 
 <div id="Solar" class="tabcontent">

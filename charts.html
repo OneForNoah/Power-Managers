@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+ <script src="jquery.csv.min.js"></script>
+ <script type="text/javascript" src="http://www.google.com/jsapi"></script>
+
+<input type="file" id="myFile">
+
+<script type="text/javascript"> // load the visualisation API
+  google.load('visualization', '1', { packages: ['corechart', 'controls'] });
+
+  google.setOnLoadCallback(drawEnergy);
+  google.setOnLoadCallback(drawHeatPump);
+  google.setOnLoadCallback(drawWellPump);
+
+
+
+  function drawChart() {
+    // Define the chart to be drawn.
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Element');
+    data.addColumn('number', 'Percentage');
+    data.addRows([
+      ['Nitrogen', 0.78],
+      ['Oxygen', 0.21],
+      ['Other', 0.01]
+    ]);
+
+    // Instantiate and draw the chart.
+    var chart = new google.visualization.PieChart(document.getElementById('myPieChart'));
+    chart.draw(data, null);
+  }
+  // this has to be a global function
+  function drawEnergy() {
+     // grab the CSV
+     $.get("allDataAvg.csv", function(csvString) {
+        // transform the CSV string into a 2-dimensional array
+        var arrayData = $.csv.toArrays(csvString, {onParseValue: $.csv.hooks.castToScalar});
+
+        // this new DataTable object holds all the data
+        var data = new google.visualization.arrayToDataTable(arrayData);
+
+        // this view can select a subset of the data at a time
+        var view = new google.visualization.DataView(data);
+        view.setColumns([0,1,2]);
+       // view.setColumns([0,2]);
+
+
+       // set chart options
+       var options = {
+          title: "Energy Used and Generated",
+          hAxis: {title: data.getColumnLabel(0), minValue: data.getColumnRange(0).min, maxValue: data.getColumnRange(0).max},
+          vAxis: {title: data.getColumnLabel(1), minValue: data.getColumnRange(1).min, maxValue: data.getColumnRange(1).max},
+        // selectionMode: 'multiple',
+
+	  legend: 'none'
+       };
+
+       // create the chart object and draw it
+       var chart = new google.visualization.ScatterChart(document.getElementById('mainEnergy'));
+       chart.draw(view, options);
+    });
+  }
+
+  function drawHeatPump() {
+     // grab the CSV
+     $.get("allDataAvg.csv", function(csvString) {
+        // transform the CSV string into a 2-dimensional array
+        var arrayData = $.csv.toArrays(csvString, {onParseValue: $.csv.hooks.castToScalar});
+
+        // this new DataTable object holds all the data
+        var data = new google.visualization.arrayToDataTable(arrayData);
+
+        // this view can select a subset of the data at a time
+        var view = new google.visualization.DataView(data);
+        view.setColumns([0,7]);
+
+
+       // set chart options
+       var options = {
+          title: "Heat Pump",
+          hAxis: {title: data.getColumnLabel(0), minValue: data.getColumnRange(0).min, maxValue: data.getColumnRange(0).max},
+          vAxis: {title: data.getColumnLabel(7), minValue: data.getColumnRange(7).min, maxValue: data.getColumnRange(7).max},
+	  legend: 'none'
+       };
+
+       // create the chart object and draw it
+       var chart = new google.visualization.ScatterChart(document.getElementById('waterPump'));
+       chart.draw(view, options);
+    });
+  }
+
+function drawWellPump() {
+     // grab the CSV
+     $.get("allDataAvg.csv", function(csvString) {
+        // transform the CSV string into a 2-dimensional array
+        var arrayData = $.csv.toArrays(csvString, {onParseValue: $.csv.hooks.castToScalar});
+
+        // this new DataTable object holds all the data
+        var data = new google.visualization.arrayToDataTable(arrayData);
+
+        // this view can select a subset of the data at a time
+        var view = new google.visualization.DataView(data);
+        view.setColumns([0,17]);
+
+
+       // set chart options
+       var options = {
+          title: "Well Pump",
+          hAxis: {title: data.getColumnLabel(0), minValue: data.getColumnRange(0).min, maxValue: data.getColumnRange(0).max},
+          vAxis: {title: data.getColumnLabel(7), minValue: data.getColumnRange(17).min, maxValue: data.getColumnRange(17).max},
+	  legend: 'none'
+       };
+
+       // create the chart object and draw it
+       var chart = new google.visualization.ScatterChart(document.getElementById('wellPump'));
+       chart.draw(view, options);
+    });
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+<style>
+<body {font-family: "Lato", sans-serif;}
+
+ul.tab {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+}
+
+/* Float the list items side by side */
+ul.tab li {float: left;}
+
+/* Style the links inside the list items */
+ul.tab li a {
+    display: inline-block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    transition: 0.3s;
+    font-size: 17px;
+}
+
+/* Change background color of links on hover */
+ul.tab li a:hover {
+    background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+ul.tab li a:focus, .active {
+    background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+}
+</style>
+<body>
+
+  <p> Graphs using CVS </p>
+
+<!-- Navbar -->
+<ul class="tab">
+  <li><a href="javascript:void(0)" class="tablinks" onclick="openTab(event, 'test')">Scatter Charts</a></li>
+ </ul>
+
+ <td><div id="mainEnergy"></div></td>
+ <td><div id="waterPump"></div></td>
+ <td><div id="wellPump"></div></td>
+
+
+
+</body>
+</html>

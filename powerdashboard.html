@@ -46,30 +46,22 @@ ul.tab li a:focus, .active {
 </style>
 <body>
 
-<h2>Power Management Dashboard</h2>
+<p>Power Management Dashboard</p>
 
 <ul class="tab">
-  <li><a href="javascript:void(0)" class="tablinks" onclick="openTab(event, 'Graphs')">Graphs</a></li>
-  <li><a href="javascript:void(0)" class="tablinks" onclick="openTab(event, 'Settings')">Settings</a></li>
+  <li><a href="javascript:void(0)" class="tablinks" onclick="openTab(event, 'Electrical')">Electrical</a></li>
+  <li><a href="javascript:void(0)" class="tablinks" onclick="openTab(event, 'Water')">Water</a></li>
   <li><a href="javascript:void(0)" class="tablinks" onclick="openTab(event, 'Solar')">Solar</a></li>
 </ul>
 
-<div id="Graphs" class="tabcontent">
-  <h3>Graphs</h3>
-  <p>Data on your utilities</p>
-  
+<div id="Electrical" class="tabcontent">
+  <h3>Electrical</h3>
+  <p>Data on Brad's power usage.</p>
 </div>
 
-<div id="Settings" class="tabcontent">
-  <h3>Settings</h3>
-  <p>Upload a new .csv file here</p>
-    <form method="post" enctype="multipart/form-data">
-      <input type="file" id="myFile">
-      <input type="submit" value="Upload" />
-    </form>
-  <!--<script>
-    var x = document.getElementById("myFile");
-  </script>-->
+<div id="Water" class="tabcontent">
+  <h3>Water</h3>
+  <p>Data on Brad's water consumption.</p>
 </div>
 
 <div id="Solar" class="tabcontent">
