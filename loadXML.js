@@ -6,7 +6,20 @@ function loadDoc(url) {
       myFunction(this);
     }
   };
-  xhttp.open("GET", "url", true);
+  xhttp.open("GET", url, true);
+  xhttp.send();
+  return xhttp.responseXML;
+}
+
+function loadCSV(url) {
+  var xhttp = new XMLHttpRequest();
+  url = url + '/cgi-bin/egauge-show?c&a&E';
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      myFunction(this);
+    }
+  };
+  xhttp.open("GET", url, true);
   xhttp.send();
   return xhttp.responseXML;
 }
@@ -27,7 +40,7 @@ function parseXML(xml) {
     if(watts < -100 || watts > 100 ){
       //utility is currently running, report to table
     }
-    
+
   }
   document.getElementById("demo").innerHTML = table;
 }
