@@ -3,6 +3,14 @@
 <style>
 body {font-family: "Lato", sans-serif;}
 
+table,th,td {
+  border : 1px solid black;
+  border-collapse: collapse;
+}
+th,td {
+  padding: 5px;
+}
+
 ul.tab {
     list-style-type: none;
     margin: 0;
@@ -48,17 +56,14 @@ ul.tab li a:focus, .active {
 
 <h2>Power Management Dashboard</h2>
 
-<ul class="tab">
-  <li><a href="javascript:void(0)" class="tablinks" onclick="openTab(event, 'Graphs')">Graphs</a></li>
-  <li><a href="javascript:void(0)" class="tablinks" onclick="openTab(event, 'Settings')">Settings</a></li>
-  <li><a href="javascript:void(0)" class="tablinks" onclick="openTab(event, 'Solar')">Solar</a></li>
-</ul>
+eGauge URL: <input type="url" id="eGauge" value="input your device"> <button onclick="getData()">Get Data</button>
+<br><br>
+<table id="demo"></table>
 
-<div id="Graphs" class="tabcontent">
-  <h3>Graphs</h3>
-  <p>Data on your utilities</p>
-  
-</div>
+<ul class="tab">
+  <li><a href="graphs.html" class="tablinks" onclick="openTab(event, 'Graphs')">Graphs</a></li>
+  <li><a href="javascript:void(0)" class="tablinks" onclick="openTab(event, 'Settings')">Settings</a></li>
+</ul>
 
 <div id="Settings" class="tabcontent">
   <h3>Settings</h3>
@@ -72,12 +77,14 @@ ul.tab li a:focus, .active {
   </script>-->
 </div>
 
-<div id="Solar" class="tabcontent">
-  <h3>Solar</h3>
-  <p>Data on Brad's solar production.</p>
-</div>
+<script type="text/javascript" src="loadXML.js"></script>
 
 <script>
+function getData(){
+	var url = document.getElementById("eGauge").value;
+    loadDoc(url);
+}
+
 function openTab(evt, tabName) {
     var i, tabcontent, tablinks;
     tabcontent = document.getElementsByClassName("tabcontent");

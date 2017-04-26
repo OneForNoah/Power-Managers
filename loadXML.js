@@ -2,13 +2,14 @@ function loadDoc(url) {
   var xhttp = new XMLHttpRequest();
   url = url + '/cgi-bin/egauge?tot&inst';
   xhttp.onreadystatechange = function() {
+      window.alert(this.readyState + " " + this.status);
     if (this.readyState == 4 && this.status == 200) {
-      myFunction(this);
+      window.alert("done");
+      parseXML(this);
     }
   };
-  xhttp.open("GET", url, true);
+  xhttp.open("GET", 'url', true);
   xhttp.send();
-  return xhttp.responseXML;
 }
 
 function loadCSV(url) {
@@ -24,15 +25,15 @@ function loadCSV(url) {
   return xhttp.responseXML;
 }
 
-function parseXML(xml) {
+function parseXML(xmlDoc) {
   var i;
-  var xmlDoc = xml.responseXML;
   var table="<tr><th>Register</th><th>Watts</th></tr>";
   var x = xmlDoc.getElementsByTagName("r");
   for (i = 0; i <x.length; i++) {
+    //if this row should be highlighted
     table += "<tr><td>" +
     x[i].getElementsByTagName("n")[0].childNodes[0].nodeValue +
-    "</td><td>" +
+    "</td><td>" +// use <td class='highlight'> instead
     x[i].getElementsByTagName("i")[0].childNodes[0].nodeValue +
     "</td></tr>";
 
