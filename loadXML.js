@@ -2,13 +2,11 @@ function loadDoc(url) {
   var xhttp = new XMLHttpRequest();
   url = url + '/cgi-bin/egauge?tot&inst';
   xhttp.onreadystatechange = function() {
-      window.alert(this.readyState + " " + this.status);
     if (this.readyState == 4 && this.status == 200) {
-      window.alert("done");
-      parseXML(this);
+      parseXML(this.responseXML);
     }
   };
-  xhttp.open("GET", 'url', true);
+  xhttp.open("GET","getInstXML.php?q="+url, true);
   xhttp.send();
 }
 
@@ -17,23 +15,22 @@ function loadCSV(url) {
   url = url + '/cgi-bin/egauge-show?c&a&E';
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
-      myFunction(this);
+      //myFunction(this);
     }
   };
-  xhttp.open("GET", url, true);
+  xhttp.open("GET", "getCSV.php?q="+url, true);
   xhttp.send();
   return xhttp.responseXML;
 }
 
-function parseXML(xmlDoc) {
+function parseXML(xml) {
   var i;
   var table="<tr><th>Register</th><th>Watts</th></tr>";
-  var x = xmlDoc.getElementsByTagName("r");
+  var x = xml.getElementsByTagName("r");
   for (i = 0; i <x.length; i++) {
-    //if this row should be highlighted
     table += "<tr><td>" +
     x[i].getElementsByTagName("n")[0].childNodes[0].nodeValue +
-    "</td><td>" +// use <td class='highlight'> instead
+    "</td><td>" +
     x[i].getElementsByTagName("i")[0].childNodes[0].nodeValue +
     "</td></tr>";
 
